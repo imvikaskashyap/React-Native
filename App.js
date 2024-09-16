@@ -1,65 +1,67 @@
-import React, {useState} from 'react';
-import {View, Text, Button, TextInput, StyleSheet} from 'react-native';
+import React, {Component} from 'react';
+import {Text, StyleSheet, View} from 'react-native';
 
-const App = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [display, setDisplay] = useState(false);
-
-  const clearData = () => {
-    setName('');
-    setEmail('');
-    setPassword('');
-    setDisplay(false);
-  };
-
-  return (
-    <View>
-      <Text style={{fontSize: 40}}>User Details Form</Text>
-      <TextInput
-        style={styles.textInput}
-        placeholder="Enter name"
-        onChangeText={text => setName(text)}
-      />
-      <TextInput
-        style={styles.textInput}
-        placeholder="Enter Email"
-        onChangeText={text => setEmail(text)}
-      />
-      <TextInput
-        style={styles.textInput}
-        secureTextEntry
-        placeholder="Enter Password"
-        onChangeText={text => setPassword(text)}
-      />
-
-      <View style={{marginBottom: 10}}>
-        <Button title="Submit" onPress={() => setDisplay(true)} />
-      </View>
-      <Button color={'green'} title="Clear" onPress={clearData} />
-
+export default class App extends Component {
+  render() {
+    return (
       <View>
-        {display ? (
-          <View>
-            <Text>Name: {name}</Text>
-            <Text>Email: {email}</Text>
-            <Text>Password: {password}</Text>
-          </View>
-        ) : null}
-      </View>
-    </View>
-  );
-};
+        <Text style={styles.header}> React Cards </Text>
 
-export default App;
+        <View style={styles.container}>
+          <View style={[styles.card, styles.cardOne]}>
+            <Text> Card 1 </Text>
+          </View>
+          <View style={[styles.card, styles.cardtwo]}>
+            <Text> Card 2 </Text>
+          </View>
+          <View style={[styles.card, styles.cardThree]}>
+            <Text> Card 3 </Text>
+          </View>
+          <View style={[styles.card, styles.cardFour]}>
+            <Text> Card 4 </Text>
+          </View>
+          <View style={[styles.card, styles.cardtwo]}>
+            <Text> Card 2 </Text>
+          </View>
+        </View>
+      </View>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
-  textInput: {
+  header: {
+    fontSize: 40,
+    textAlign: 'center',
+    margin: 10,
+    fontWeight: 'bold',
+  },
+  container: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  card: {
+      flex:1,
+    justifyContent:"center",
+    alignItems:"center",
+    width: 100,
+    height: 100,
     fontSize: 30,
-    borderWidth: 2,
-    borderColor: 'blue',
     margin: 10,
     padding: 10,
+    borderRadius:4,
+  
+  },
+  cardOne: {
+    backgroundColor: 'blue',
+  },
+  cardtwo: {
+    backgroundColor: 'red',
+  },
+  cardThree: {
+    backgroundColor: 'green',
+  },
+  cardFour: {
+    backgroundColor: 'yellow',
   },
 });
